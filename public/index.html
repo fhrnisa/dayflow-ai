@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DayFlow AI — Productivity Assistant</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="app-layout">
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <i data-lucide="sparkles"></i>
+        </div>
+        <div class="logo-text">
+          <h1>DayFlow AI</h1>
+          <p>Stay organized. Think clearly. Get things done.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      
+      <div class="greeting-card" id="dashboard-greeting">
+        <h2>Good Morning 👋</h2>
+        <p>What would you like to accomplish today?</p>
+        
+        <div class="chips-container">
+          <button type="button" class="action-chip" onclick="fillInput('Plan my day')">
+            <i data-lucide="calendar"></i> <span>Plan My Day</span>
+          </button>
+          <button type="button" class="action-chip" onclick="fillInput('Create a structured to-do list')">
+            <i data-lucide="check-square"></i> <span>Create To-do List</span>
+          </button>
+          <button type="button" class="action-chip" onclick="fillInput('Brainstorm ideas for ')">
+            <i data-lucide="lightbulb"></i> <span>Brainstorm Ideas</span>
+          </button>
+          <button type="button" class="action-chip" onclick="fillInput('Design a study planner for ')">
+            <i data-lucide="book-open"></i> <span>Study Planner</span>
+          </button>
+          <button type="button" class="action-chip" onclick="fillInput('Help me improve this writing: ')">
+            <i data-lucide="zap"></i> <span>Improve Writing</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="chat-box" class="chat-box"></div>
+
+      <form id="chat-form" class="input-form">
+        <input type="text" id="user-input" placeholder="Ask DayFlow AI anything..." autocomplete="off" required />
+        <button type="submit" class="btn-send" aria-label="Send message">
+          <i data-lucide="arrow-up"></i>
+        </button>
+      </form>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Initialize Lucide icons on page load
+    lucide.createIcons();
+
+    // UX Helper to handle clicking on the productivity action chips
+    function fillInput(text) {
+      const input = document.getElementById('user-input');
+      input.value = text;
+      input.focus();
+    }
+  </script>
+</body>
+</html>
