@@ -22,10 +22,10 @@ form.addEventListener('submit', async function (e) {
   input.value = '';
 
   // 2. Add a temporary loading state
-  const loadingId = appendMessage('bot', 'Gemini is thinking...');
+  const loadingId = appendMessage('bot', 'DayFlow AI sedang berpikir...');
 
   try {
-    // 3. Make the API request to our backend
+    // 3. Make the API request to our backend (Relative path otomatis aman di Vercel)
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
@@ -42,7 +42,9 @@ form.addEventListener('submit', async function (e) {
     if (response.ok) {
       // 4. Display the real answer & push it to our history tracker
       appendMessage('bot', data.result);
-      conversationHistory.push({ role: 'bot', text: data.result });
+      
+      // FIXED: Mengubah 'bot' menjadi 'model' agar sinkron dengan struktur Gemini API
+      conversationHistory.push({ role: 'model', text: data.result });
     } else {
       appendMessage('bot', `Error: ${data.message}`);
     }
@@ -53,7 +55,7 @@ form.addEventListener('submit', async function (e) {
   }
 });
 
-// Adjusted helper to return the element reference so we can easily delete the loading text later
+// Helper to return the element reference so we can easily delete the loading text later
 function appendMessage(sender, text) {
   const msg = document.createElement('div');
   msg.classList.add('message', sender);
