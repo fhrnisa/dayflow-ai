@@ -13,6 +13,11 @@ const GEMINI_MODEL = 'gemini-2.5-flash';
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    message: "DayFlow AI Backend is running successfully on Vercel!" 
+  });
+});
 
 // ENDPOINT 1: GENERATE-TEXT
 app.post('/generate-text', async (req, res) => {
