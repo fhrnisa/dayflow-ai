@@ -3,6 +3,7 @@ import express from 'express';
 import multer from 'multer';
 import cors from 'cors';
 import { GoogleGenAI } from '@google/genai';
+import path from 'path';
 
 const app = express();
 const upload = multer();
@@ -13,6 +14,10 @@ const GEMINI_MODEL = 'gemini-2.5-flash';
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
+});
 
 // ENDPOINT 1: GENERATE-TEXT
 app.post('/generate-text', async (req, res) => {
