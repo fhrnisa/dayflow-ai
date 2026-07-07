@@ -266,7 +266,43 @@ body {
 
 /* Screen Scaling adjustments */
 @media (max-width: 640px) {
-  .app-layout { padding: 0 12px; }
-  .greeting-card { padding: 16px; }
-  .message { max-width: 90%; }
+  body {
+    /* Menggunakan dynamic viewport unit agar pas dengan bar browser mobile */
+    height: 100dvh; 
+  }
+
+  .app-layout { 
+    padding: 0 12px; 
+    height: 100dvh;
+  }
+
+  /* Kurangi padding vertikal di mobile agar ruang chat lebih luas */
+  .container {
+    padding: 12px 0; 
+  }
+
+  /* Sesuaikan ukuran font dan padding kartu ucapan */
+  .greeting-card { 
+    padding: 16px; 
+    margin-bottom: 16px;
+  }
+  
+  .greeting-card h2 {
+    font-size: 1.25rem;
+  }
+
+  .message { 
+    max-width: 90%; 
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+
+  /* Pastikan input form memiliki padding yang sedikit lebih ramping di mobile */
+  .input-form {
+    padding: 4px 4px 4px 14px;
+  }
+  
+  .input-form input[type="text"] {
+    font-size: 0.9rem;
+  }
 }
