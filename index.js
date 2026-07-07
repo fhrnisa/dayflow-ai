@@ -4,6 +4,9 @@ import multer from 'multer';
 import cors from 'cors';
 import { GoogleGenAI } from '@google/genai';
 
+require('dotenv').config(); 
+
+const express = require('express');
 const app = express();
 const upload = multer();
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
@@ -140,3 +143,12 @@ app.post('/api/chat', async (req, res) => {
     res.status(500).json({ message: e.message });
   }
 });
+
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Server running locally on port ${PORT}`);
+    });
+}
+
+module.exports = app;
