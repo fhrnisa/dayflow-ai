@@ -1,9 +1,8 @@
-require('dotenv').config(); 
-
-const express = require('express');
-const multer = require('multer');
-const cors = require('cors');
-const { GoogleGenAI } = require('@google/genai');
+import 'dotenv/config';
+import express from 'express';
+import multer from 'multer';
+import cors from 'cors';
+import { GoogleGenAI } from '@google/genai';
 
 const app = express();
 const upload = multer();
@@ -133,5 +132,5 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-// Ekspor modul agar bisa dibaca Serverless Vercel
-module.exports = app;
+// Ekspor default menggunakan gaya ES Modules untuk Serverless Vercel
+export default app;
